@@ -2,12 +2,16 @@ import express from "express";
 import dotenv from "dotenv";
 import {connectDB} from "./db/connectdb.js";
 import {Todo} from"./schema/todoSchema.js";
+import cors from 'cors'
+
 dotenv.config();
+app.use (cors())
 
 const app = express();
 const port = process.env.PORT || 6000;
 
 connectDB();
+
 
 app.get("/", async(req, res) => {
 const todos= await Todo.find();
